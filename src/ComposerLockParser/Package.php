@@ -138,6 +138,10 @@ class Package {
             $namespace = $this->autoload['psr-4'];
         }
 
-        return @trim(key($namespace), '\\');
+        if (is_array($namespace)) {
+            return trim(key($namespace), '\\');
+        }
+        
+        return trim($namespace);
     }
-} 
+}
