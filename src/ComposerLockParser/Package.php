@@ -97,14 +97,14 @@ class Package {
             $packageInfo['version'],
             $packageInfo['source'],
             $packageInfo['dist'],
-            $packageInfo['require'],
+            isset($packageInfo['require']) ? $packageInfo['require'] : [],
             isset($packageInfo['requireDev']) ? $packageInfo['requireDev'] : [],
             $packageInfo['type'],
             $packageInfo['autoload'],
             isset($packageInfo['license']) ? $packageInfo['license'] : [],
             isset($packageInfo['authors']) ? $packageInfo['authors'] : [],
             $packageInfo['description'],
-            $packageInfo['keywords'],
+            isset($packageInfo['keywords']) ? $packageInfo['keywords'] : [],
             new DateTime($packageInfo['time'])
         );
     }
@@ -138,7 +138,6 @@ class Package {
             $namespace = $this->autoload['psr-4'];
         }
 
-        return trim(key($namespace), '\\');
+        return @trim(key($namespace), '\\');
     }
-
 } 
